@@ -1,4 +1,33 @@
-* {
-    margin: 0;
-    
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*, :root {
+    border: 1px solid red;
+
+    font-family: 'Inter', sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+main {
+    max-width: 640px;
+    margin: 0 auto 64px;
+    padding: 20px;
+
+    border: 1px solid greenyellow;
+}
+
+#acertos {
+    text-align: center;
+    background-color: #a3e635;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 12px;
 }

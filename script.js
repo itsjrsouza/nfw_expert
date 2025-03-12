@@ -60,6 +60,14 @@
     const quiz = document.querySelector('#quiz')
     const template = document.querySelector ('template')
 
+// para contar as certas
+    const corretas = new Set()
+
+// adicionando a quantidade de perguntas certas
+    const totalDePerguntas = perguntas.length
+    const mostrarTotal = document.querySelector('#acertos span')
+    mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas
+
 // loop ou laço de repetição das perguntas
     for(const item of perguntas) {
         const quizItem = template.content.cloneNode(true) // true para selecionar todas as perguntas
@@ -68,7 +76,23 @@
     for (let resposta of item.respostas) {
         const dt = quizItem.querySelector('dl dt').cloneNode(true)
         dt.querySelector('span').textContent = resposta
+        dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item)) // para que cada pergunta tenha sua selação do input
 
+        dt.querySelector('input').value = item.respostas.indexOf(resposta) // para ajustar o valor do value das perguntas
+        
+
+// evento de mudança do input
+
+        dt.querySelector('input').onchange = (event) => {
+            const estaCorreta = event.target.value == item.correta
+            
+                corretas.delete (item) // apresentar somente a contagem das perguntas corretas
+                if (estaCorreta) {
+                    corretas.add(item)
+                }
+
+            mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas
+        }
         quizItem.querySelector('dl').appendChild (dt)
     }
 
